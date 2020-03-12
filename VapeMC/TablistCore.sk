@@ -1,0 +1,67 @@
+
+#! 
+#!                   WARNING
+#! 
+#!       This skript depends on my skript 
+#!       named "CoreCommands.sk". If you
+#!       know what you're doing, you sh-
+#!       ould understand how this skript
+#!       works. And make it compatible 
+#!       for your server :3
+#! 
+#!         		   CoreCommands:
+#!     https://github.com/iDevMC/remakes/VapeMC
+#!  
+
+
+options:
+
+#!   ========================
+#!   |    Tablist Options   |  
+#!   ========================
+
+	defaultTablist: &7&lMEMBER &8●
+	helperTablist: &9&lHELPER &8●
+	modTablist: &e&lMOD &8● 
+	moderatorTablist: &d&lMODERATOR &8●
+	adminTablist: &c&lADMIN &8●
+	administatorTablist: &c&lADMINISTRATOR &8●
+	managerTablist: &6&lMANAGER &8●
+	devTablist: &5&lDEV &8●
+	headDevTablist: &5&lCOMMANDER &8●
+	cownerTablist: &4&lLEADER &8●
+	ownerTablist: &4&lOWNER &8●
+
+on join:
+	if {player.rank.%player%} is "default":
+		set player tab name to "{@defaultTablist} &f%player%"
+
+	if {player.rank.%player%} is "nhelper":
+		set player tab name to "{@helperTablist} &f%player%"
+
+	if {player.rank.%player%} is "nmod":
+		set player tab name to "{@modTablist} &f%player%"
+
+	if {player.rank.%player%} is "hmod":
+		set player tab name to "{@moderatorTablist} &f%player%"
+
+	if {player.rank.%player%} is "nadmin":
+		set player tab name to "{@adminTablist} &f%player%"
+
+	if {player.rank.%player%} is "hadmin":
+		set player tab name to "{@administatorTablist} &f%player%"
+
+	if {player.rank.%player%} is "nmanage":
+		set player tab name to "{@managerTablist} &f%player%"
+
+	if {player.rank.%player%} is "ncom":
+		set player tab name to "{@headDevTablist} &f%player%"
+
+	if {player.rank.%player%} is "ndev":
+		set player tab name to "{@devTablist} &f%player%"
+
+	if {player.rank.%player%} is "nlead":
+		set player tab name to "{@cownerTablist} &f%player%"
+
+	if {player.rank.%player%} is "nowner":
+		set player tab name to "{@ownerTablist} &f%player%"
