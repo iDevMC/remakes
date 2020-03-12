@@ -1,0 +1,383 @@
+
+#
+#!                        DISCLAIMER 
+#
+#  I got the idea to make this when I found VapePvP's old server
+#  files on my PC. VapePvP is a server that almost released but
+#  the owners left because of how toxic it got. Even though I 
+#  really liked the project, even as being the head developer,
+#  I can say that it became too toxic to stay. So yeah, keep 
+#  in mind that ranks have been inspired from that server and 
+#  most of the stuff you see in this skript only has been 
+#  recoded and not copy pasted, even tho I'm the owner of 
+#  the old skripts, but who cares :L Anyways, enjoy this.
+#											~ iMPDevMC
+#
+
+#!           Before you ask, here's some infos
+#
+#  Player is not found as a player.
+#    - This means that Skript can't find the string you gave
+#      him. Make sure the username joined before.
+#
+
+#!              To make things clear
+#
+#     String
+#       - A string is just a piece of text.
+#
+#     Integer / int
+#       - A integer is just a number
+#
+
+#
+#!            More infos
+# 
+#     Tested Skript version
+#     	- dev36 
+#
+#     Used addons:
+#     	- SkQuery (latest)
+#       - skRayFall (latest)
+#
+#     Required equipement:
+#       - A working brain
+#
+
+#! 
+#! 				       WARNING
+#! 
+#!     If you have no idea how this skript works
+#!     please don't change it as it can change
+#!     the behavior of the skript. Only modify
+#!     settings you know, like messages.
+#!     
+#!     Here's what you can change and what I 
+#!     recommand not changing at all :)
+#! 
+#!        	 Things you can change
+#!             - Prefix
+#!             - Syntax error.
+#!             - Rank CMD Settings
+#!             - Rank Settings
+#!             - Messages
+#!             - options
+#! 
+#!           Things you can't change
+#!             - variables > will change the default rank.
+#!             - Network Values > do not change this, as is it used within multiple skripts.
+#! 
+
+#!            	LAST INFOS
+#! 
+#! 		MODERATOR = HEAD MOD
+#! 		MOD = MODERATOR
+#! 
+#!      ADMINISTRATOR = HEAD ADMIN
+#! 		ADMIN = ADMINISTRATOR
+#! 
+#!      that's how it works soz :L
+#! 
+
+variables:
+	{player.rank.%player%} = "default"
+
+options:
+
+#!	===============================
+#!  |         NET. VALUE          |
+#!  ===============================
+
+	networkOwner: nowner
+	networkLeader: nlead
+	networkCommander: ncom
+	networkDev: ndev
+
+	networkManager: nmanage
+	networkAdministator: hadmin
+	networkModerator: hmod
+
+	networkAdmin: nadmin
+	networkMod: nmod
+	networkHelper: nhelper
+
+	networkBot: default
+
+#!	===============================
+#!  |           PREFIXS           |
+#!  ===============================
+
+	prefix: &9&lRANK &8»
+	prefix2: &8»
+
+#!	===============================
+#!  |        SYNTAX ERRORS        |
+#!  ===============================
+
+	error: &cSyntax error;
+	error0.1: &cInvalid rank.
+	error1: &cArgument 1 is not set.
+	error2: &cArgument 2 is not set.
+	error3: &cArgument 2 cannot be found as a player.
+	error3.1: &7&oHas he/she/they joined the server ?
+
+	usage1: &7/rankmanager &8<&cset&8/&ccheck&8> &8[&c$player&8/&c$player&8] &8[&c$rankString&8]
+	
+	usage2: &7/rankmanager &8<&aset&8> &c$player &c$rankString
+	usage2.1: &7/rankmanager &8<&aset&8> &a%arg 2% &c$rankString
+	usage2.2: &7/rankmanager &8<&aset&8> &a%arg 2% &a$rankString
+	usage2.3: &7&oNo player named '%arg 2%' have been found as a player. 
+
+	usage3: &7/rankmanager &8<&acheck> &c$player
+	usage3.1: &7/rankmanager &8<&acheck>
+
+#!	===============================
+#!  |      RANK CMD SETTINGS      |
+#!  ===============================
+
+	permission: server.rankmanager
+	permission message: &fYou need to be &6&lNETWORK MANAGER &fto use this command ! 
+	description: Main command for rank manager
+
+#!	===============================
+#!  |        RANKS SETTINGS       |
+#!  ===============================
+
+	owner: &4&lNETWORK OWNER
+	cowner: &4&lNETWORK LEADER
+	hdev: &5&lNETWORK COMMANDER
+	dev: &5&lNETWORK DEV
+
+	manager: &6&lNETWORK MANAGER
+	hadmin: &c&lNETWORK ADMINISTRATOR
+	hmod: &d&lNETWORK MODERATOR
+	
+	admin: &c&lNETWORK ADMIN
+	mod: &e&lNETWORK MOD
+	helper: &9&lNETWORK HELPER
+
+	default: &7&lMEMBER
+
+#!	===============================
+#!  |           MESSAGES          |
+#!  ===============================
+
+	#! Titles & subtitle
+
+	rankUpdated: &9&lSERVER
+	rankUpdated1: &fYour rank has been updated to &4&lOWNER
+	rankUpdated2: &fYour rank has been updated to &4&lLEADER
+	rankUpdated3: &fYour rank has been updated to &5&lCOMMANDER
+	rankUpdated4: &fYour rank has been updated to &5&lDEV
+
+	rankUpdated5: &fYour rank has been updated to &6&lMANAGER
+	rankUpdated6: &fYour rank has been updated to &c&lADMINISTRATOR
+	rankUpdated7: &fYour rank has been updated to &d&lMODERATOR
+
+	rankUpdated8: &fYour rank has been updated to &c&lADMIN
+	rankUpdated9: &fYour rank has been updated to &e&lMOD
+	rankUpdated10: &fYour rank has been updated to &9&lHELPER
+
+	#! Command messages 
+
+	rankmanager_rankUpdatedOwnerPlayer: &fYou updated %arg 2%'s rank to &4&lOWNER
+	rankmanager_rankUpdatedOwnerTarget: &8・ &aYour rank has been updated to &4&lOWNER
+
+	rankmanager_rankUpdatedLeaderPlayer: &fYou updated %arg 2%'s rank to &4&lLEADER
+	rankmanager_rankUpdatedLeaderTarget: &8・ &aYour rank has been updated to &4&lLEADER 
+
+	rankmanager_rankUpdatedCommanderPlayer: &fYou updated %arg 2%'s rank to &5&lCOMMANDER
+	rankmanager_rankUpdatedCommanderTarget: &8・ &aYour rank has been updated to &5&lCOMMANDER 
+
+	rankmanager_rankUpdatedDevPlayer: &fYou updated %arg 2%'s rank to &5&lDEV
+	rankmanager_rankUpdatedDevTarget: &8・ &aYour rank has been updated to &5&lDEV
+
+	rankmanager_rankUpdatedManagerPlayer: &fYou updated %arg 2%'s rank to &6&lMANAGER
+	rankmanager_rankUpdatedManagerTarget: &8・ &aYour rank has been updated to &6&lMANAGER
+
+	rankmanager_rankUpdatedAdministratorPlayer: &fYou updated %arg 2%'s rank to &c&lADMINISTRATOR
+	rankmanager_rankUpdatedAdministratorTarget: &8・ &aYour rank has been updated to &c&lADMINISTRATOR
+
+	rankmanager_rankUpdatedModeratorPlayer: &fYou updated %arg 2%'s rank to &d&lMODERATOR
+	rankmanager_rankUpdatedModeratorTarget: &8・ &aYour rank has been updated to &d&lMODERATOR
+
+	rankmanager_rankUpdatedAdminPlayer: &fYou updated %arg 2%'s rank to &c&lADMIN
+	rankmanager_rankUpdatedAdminTarget: &8・ &aYour rank has been updated to &c&lADMIN
+
+	rankmanager_rankUpdatedModPlayer: &fYou updated %arg 2%'s rank to &e&lMOD
+	rankmanager_rankUpdatedModTarget: &8・ &aYour rank has been updated to &e&lMOD
+
+	rankmanager_rankUpdatedHelperPlayer: &fYou updated %arg 2%'s rank to &9&lHELPER
+	rankmanager_rankUpdatedHelperTarget: &8・ &aYour rank has been updated to &9&lHELPER
+
+
+command /rankmanager [<text>] [<offline player>] [<text>]:
+	permission: {@permission}
+	permission message: {@permission message}
+	aliases: /rm, /setrank, /rankset
+	description: {@description}
+	trigger:
+		if arg 1 is not set:
+			send "{@prefix} {@error1}"
+			send "{@prefix2} {@error3.1}"
+			stop 
+
+		if arg 1 is set:
+			if arg 1 is "set":
+				if arg 2 is not set:
+					send "{@prefix} {@error}"
+					send "{@prefix2} {@error1}"
+					stop 
+
+			if arg 1 is "set":
+				if arg 2 is set:
+					if arg 3 is not set:
+						send "{@prefix} {@error}"
+						send "{@prefix2} {@error2}"
+						stop 
+
+					if arg 3 is set:
+						if arg 3 is not "owner" or "cowner" or "hdev" or "dev" or "manager" or "hadmin" or "hmod" or "admin" or "mod" or "helper":
+							send "{@error0.1}"
+							stop 
+
+						if arg 3 is "owner":
+							if arg 2 is a player:
+								send "{@prefix} &7{@rankmanager_rankUpdatedOwnerPlayer}"
+								set {player.rank.%player%} to "{@networkOwner}"
+								if arg 2 is online:
+									send arg 2 title "{@rankUpdated}" and subtitle "{@rankUpdated1}" for 3 seconds
+									send "" to arg 2
+									send "{@rankmanager_rankUpdatedOwnerTarget}" to arg 2
+									send "" to arg 2
+									stop
+							if arg 2 is not a player:
+								send "{@prefix} {@error3}"
+								send "{@prefix2} {@error3.1}"
+								stop
+
+						if arg 3 is "cowner" or "leader":
+							if arg 2 is a player:
+								send "{@prefix} {@rankmanager_rankUpdatedLeaderPlayer}"
+								if arg 2 is online:
+									send arg 2 title "{@rankUpdated}" and subtitle "{@rankUpdated2}" for 3 seconds
+									send "" to arg 2
+									send "{@rankmanager_rankUpdatedLeaderTarget}" to arg 2
+									send "" to arg 2
+									stop
+							if arg 2 is not a player:
+								send "{@prefix} {@error3}"
+								send "{@prefix2} {@error3.1}"
+								stop
+
+						if arg 3 is "hdev" or "commander":
+							if arg 2 is a player:
+								send "{@prefix} {@rankmanager_rankUpdatedCommanderPlayer}"
+								if arg 2 is online:
+									send arg 2 title "{@rankUpdated}" and subtitle "{@rankUpdated3}" for 3 seconds
+									send "" to arg 2
+									send "{@rankmanager_rankUpdatedCommanderTarget}" to arg 2
+									send "" to arg 2
+									stop
+							if arg 2 is not a player:
+								send "{@prefix} {@error3}"
+								send "{@prefix2} {@error3.1}"
+								stop
+
+						if arg 3 is "dev":
+							if arg 2 is a player:
+								send "{@prefix} {@rankmanager_rankUpdatedDevPlayer}"
+								if arg 2 is online:
+									send arg 2 title "{@rankUpdated}" and subtitle "{@rankUpdated4}" for 3 seconds
+									send "" to arg 2
+									send "{@rankmanager_rankUpdatedDevTarget}" to arg 2
+									send "" to arg 2
+									stop
+							if arg 2 is not a player:
+								send "{@prefix} {@error3}"
+								send "{@prefix2} {@error3.1}"
+								stop
+
+						if arg 3 is "manager":
+							if arg 2 is a player:
+								send "{@prefix} {@rankmanager_rankUpdatedManagerPlayer}"
+								if arg 2 is online:
+									send arg 2 title "{@rankUpdated}" and subtitle "{@rankUpdated5}" for 3 seconds
+									send "" to arg 2
+									send "{@rankmanager_rankUpdatedManagerTarget}" to arg 2
+									send "" to arg 2
+									stop
+							if arg 2 is not a player:
+								send "{@prefix} {@error3}"
+								send "{@prefix2} {@error3.1}"
+								stop 
+
+						if arg 3 is "administrator":
+							if arg 2 is a player:
+								send "{@prefix} {@rankmanager_rankUpdatedAdministratorPlayer}"
+								if arg 2 is online:
+									send arg 2 title "{@rankUpdated}" and subtitle "{@rankUpdated6}" for 3 seconds
+									send "" to arg 2
+									send "{@rankmanager_rankUpdatedAdministratorTarget}" to arg 2
+									send "" to arg 2
+									stop
+							if arg 2 is not a player:
+								send "{@prefix} {@error3}"
+								send "{@prefix2} {@error3.1}"
+								stop 
+
+						if arg 3 is "moderator":
+							if arg 2 is a player:
+								send "{@prefix} {@rankmanager_rankUpdatedModeratorPlayer}"
+								if arg 2 is online:
+									send arg 2 title "{@rankUpdated}" and subtitle "{@rankUpdated7}" for 3 seconds
+									send "" to arg 2
+									send "{@rankmanager_rankUpdatedModeratorTarget}" to arg 2
+									send "" to arg 2
+									stop
+							if arg 2 is not a player:
+								send "{@prefix} {@error3}"
+								send "{@prefix2} {@error3.1}"
+								stop 
+
+						if arg 3 is "admin":
+							if arg 2 is a player:
+								send "{@prefix} {@rankmanager_rankUpdatedAdminPlayer}"
+								if arg 2 is online:
+									send arg 2 title "{@rankUpdated}" and subtitle "{@rankUpdated8}" for 3 seconds
+									send "" to arg 2
+									send "{@rankmanager_rankUpdatedAdminTarget}" to arg 2
+									send "" to arg 2
+									stop
+							if arg 2 is not a player:
+								send "{@prefix} {@error3}"
+								send "{@prefix2} {@error3.1}"
+								stop 
+
+						if arg 3 is "mod":
+							if arg 2 is a player:
+								send "{@prefix} {@rankmanager_rankUpdatedModPlayer}"
+								if arg 2 is online:
+									send arg 2 title "{@rankUpdated}" and subtitle "{@rankUpdated9}" for 3 seconds
+									send "" to arg 2
+									send "{@rankmanager_rankUpdatedAdminTarget}" to arg 2
+									send "" to arg 2
+									stop
+							if arg 2 is not a player:
+								send "{@prefix} {@error3}"
+								send "{@prefix2} {@error3.1}"
+								stop 
+
+						if arg 3 is "helper":
+							if arg 2 is a player:
+								send "{@prefix} {@rankmanager_rankUpdatedHelperPlayer}"
+								if arg 2 is online:
+									send arg 2 title "{@rankUpdated}" and subtitle "{@rankUpdated7}" for 3 seconds
+									send "" to arg 2
+									send "{@rankmanager_rankUpdatedHelperTarget}" to arg 2
+									send "" to arg 2
+									stop
+							if arg 2 is not a player:
+								send "{@prefix} {@error3}"
+								send "{@prefix2} {@error3.1}"
+								stop 
