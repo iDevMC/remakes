@@ -1,0 +1,96 @@
+
+#! 
+#!                   WARNING
+#! 
+#!       This skript depends on my skript 
+#!       named "CoreCommands.sk". If you
+#!       know what you're doing, you sh-
+#!       ould understand how this skript
+#!       works. And make it compatible 
+#!       for your server :3
+#! 
+#!         		   CoreCommands:
+#!     https://github.com/iDevMC/remakes/VapeMC
+#!  
+
+
+options:
+	defaultJoin: &8・ &7&lMEMBER &7
+	helperJoin: &8・ &9&lHELPER &7
+	modJoin: &8・ &e&lMOD &7
+	moderatorJoin: &8・ &d&lMODERATOR &7
+	adminJoin: &8・ &c&lADMIN &7
+	administratorJoin: &8・ &c&lADMINISTRATOR
+	managerJoin: &8・ &6&lMANAGER &7
+	devJoin: &8・ &5&lDEV
+	commanderJoin: &8・ &5&lCOMMANDER &7
+	leaderJoin: &8・ &4&lLEADER &7
+	ownerJoin: &4&lOWNER &7
+
+on join:
+	if {player.rank.%player%} is "default":
+		set join message to "		{@defaultJoin} %player% joined the game"
+
+	if {player.rank.%player%} is "nhelper":
+		set join message to "		{@helperJoin} %player% joined the game"
+
+	if {player.rank.%player%} is "nmod":
+		set join message to "		{@modJoin} %player% joined the game"
+
+	if {player.rank.%player%} is "hmod":
+		set join message to "		{@moderatorJoin} %player% joined the game"
+
+	if {player.rank.%player%} is "nadmin":
+		set join message to "		{@adminJoin} %player% joined the game"
+
+	if {player.rank.%player%} is "hadmin":
+		set join message to "		{@administratorJoin} %player% joined the game"
+
+	if {player.rank.%player%} is "nmanage":
+		set join message to "		{@managerJoin} %player% joined the game"
+
+	if {player.rank.%player%} is "ncom":
+		set join message to "		{@commanderJoin} %player% joined the game"
+
+	if {player.rank.%player%} is "ndev":
+		set join message to "		{@devJoin} %player% joined the game"
+
+	if {player.rank.%player%} is "nlead":
+		set join message to "		{@leaderJoin} %player% joined the game"
+
+	if {player.rank.%player%} is "nowner":
+		set join message to "		{@ownerJoin} %player% joined the game"
+
+on quit:
+	if {player.rank.%player%} is "default":
+		set quit message to "		{@defaultJoin} %player% left the game"
+
+	if {player.rank.%player%} is "nhelper":
+		set quit message to "		{@helperJoin} %player% left the game"
+
+	if {player.rank.%player%} is "nmod":
+		set quit message to "		{@modJoin} %player% left the game"
+
+	if {player.rank.%player%} is "hmod":
+		set quit message to "		{@moderatorJoin} %player% left the game"
+
+	if {player.rank.%player%} is "nadmin":
+		set quit message to "		{@adminJoin} %player% left the game"
+
+	if {player.rank.%player%} is "hadmin":
+		set quit message to "		{@administratorJoin} %player% left the game"
+
+	if {player.rank.%player%} is "nmanage":
+		set quit message to "		{@managerJoin} %player% left the game"
+
+	if {player.rank.%player%} is "ncom":
+		set quit message to "		{@commanderJoin} %player% left the game"
+
+	if {player.rank.%player%} is "ndev":
+		set quit message to "		{@devJoin} %player% left the game"
+
+	if {player.rank.%player%} is "nlead":
+		set quit message to "		{@leaderJoin} %player% left the game"
+
+	if {player.rank.%player%} is "nowner":
+		set quit message to "		{@ownerJoin} %player% left the game"
